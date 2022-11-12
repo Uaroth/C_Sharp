@@ -4,6 +4,9 @@
 // Перевести введённую текстом строку чисел через пробел в понятный
 // консоли числовой массив
 
+string userText = Console.ReadLine();
+string[] userArray = userText.Split(" ");
+double [] numbers = ReadNumbers (userArray);
 double[] ReadNumbers(string[] text)
 {
     double[] numbersArray = new double[text.Length];

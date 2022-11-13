@@ -1,6 +1,17 @@
 // Collection of useful methods from lessons and practice solutions
 
 
+// Запросить и запарсить число
+
+int SetNumber(string text)
+{
+    string[] arr = text.Split(" ");
+    Console.WriteLine($"Enter number {text}");
+    int num = int.Parse(Console.ReadLine());
+    return num;
+}
+
+
 // Перевести введённую текстом строку чисел через пробел в понятный
 // консоли числовой массив
 
@@ -71,12 +82,12 @@ int[] Revert(int[] arr)
 
 int[,] GetRandomMatrix(int rows, int columns, int maxValue, int minValue)
 {
-    int [,] matrix = new int[rows, columns];
+    int[,] matrix = new int[rows, columns];
     for (int i = 0; i < rows; i++)
     {
         for (int j = 0; j < columns; j++)
         {
-            matrix [i,j] = new Random().Next(minValue, maxValue + 1);
+            matrix[i, j] = new Random().Next(minValue, maxValue + 1);
         }
     }
     return matrix;

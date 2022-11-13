@@ -4,16 +4,15 @@
 // Перевести введённую текстом строку чисел через пробел в понятный
 // консоли числовой массив
 
-string userText = Console.ReadLine();
-string[] userArray = userText.Split(" ");
-double [] numbers = ReadNumbers (userArray);
-double[] ReadNumbers(string[] text)
+
+int[] GetArrayFromString(string text)
 {
-    double[] numbersArray = new double[text.Length];
+    string[] numbers = text.Split(" ");
+    int[] numbersArray = new int[text.Length];
 
     for (int i = 0; i < text.Length; i++)
     {
-        numbersArray[i] = double.Parse(text[i]);
+        numbersArray[i] = int.Parse(numbers[i]);
     }
     return numbersArray;
 }
@@ -54,13 +53,13 @@ void SumAll(int number)
 
 // Развернуть массив
 
-int [] Revert(int [] arr)
+int[] Revert(int[] arr)
 
 {
-    int [] revertArr = new int [arr.Length];
+    int[] revertArr = new int[arr.Length];
     for (int i = 0; i < arr.Length; i++)
     {
-        revertArr [i] = arr [arr.Length - 1 - i];
+        revertArr[i] = arr[arr.Length - 1 - i];
     }
     return revertArr;
 }
@@ -70,20 +69,18 @@ int [] Revert(int [] arr)
 
 // Получить случайную таблицу
 
-int[,] GetArray(int m, int n, int min, int max)
+int[,] GetRandomMatrix(int rows, int columns, int maxValue, int minValue)
 {
-    int[,] result = new int[m, n];
-    for (int i = 0; i < m; i++)
+    int [,] matrix = new int[rows, columns];
+    for (int i = 0; i < rows; i++)
     {
-        for (int j = 0; j < n; j++)
+        for (int j = 0; j < columns; j++)
         {
-            result[i, j] = new Random().Next(min, max + 1);
+            matrix [i,j] = new Random().Next(minValue, maxValue + 1);
         }
-
     }
-    return result;
+    return matrix;
 }
-
 
 
 // Заполнить таблицу случайными числами от 1 до 10

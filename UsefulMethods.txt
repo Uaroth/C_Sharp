@@ -3,10 +3,9 @@
 
 // Запросить и запарсить число
 
-int SetNumber(string text)
+int SetNumber(string numberName)
 {
-    string[] arr = text.Split(" ");
-    Console.WriteLine($"Enter number {text}");
+    Console.WriteLine($"Enter number {numberName}");
     int num = int.Parse(Console.ReadLine());
     return num;
 }
@@ -80,7 +79,7 @@ int[] Revert(int[] arr)
 
 // Получить случайную таблицу
 
-int[,] GetRandomMatrix(int rows, int columns, int maxValue, int minValue)
+int[,] GetRandomMatrix(int rows, int columns, int minValue, int maxValue)
 {
     int[,] matrix = new int[rows, columns];
     for (int i = 0; i < rows; i++)
@@ -110,16 +109,80 @@ void FillArray(int[,] matr)
 
 // Вывести таблицу
 
-void PrintArray(int[,] matr)
+void PrintMatrix(int[,] matr)
 {
+    Console.WriteLine("Матрица целочисленных готова");
     for (int i = 0; i < matr.GetLength(0); i++)
     {
         for (int j = 0; j < matr.GetLength(1); j++)
         {
-            Console.Write($"{matr[i, j]} ");
+            Console.Write($"{matr[i, j]} | ");
         }
         Console.WriteLine();
     }
 }
 
 
+// Найти индекс элемента
+
+void CheckIndMatr(int[,] matr)
+{
+    Console.WriteLine("Укажите значение для получения индекса");
+    int num = int.Parse(Console.ReadLine());
+    int numCount = 0; // Чтоб остановить после первого обнаружения и зафиксировать отсутствие
+    for (int i = 0; i < matr.GetLength(0); i++)
+    {
+        for (int j = 0; j < matr.GetLength(1); j++)
+        {
+            if (numCount == 0 && num == matr[i, j])
+            {
+                numCount++;
+                Console.WriteLine($"Индекс = ({i},{j})");
+
+            }
+        }
+    }
+    if (numCount == 0) Console.WriteLine("Нет такого значения");
+}
+
+
+
+// Найти среднее арифметическое каждого столбца
+
+void FindMatrAvrg(int[,] matr)
+{
+    for (int j = 0; j < matr.GetLength(1); j++)
+    {
+        double sum = 0;
+        for (int i = 0; i < matr.GetLength(0); i++)
+        {
+            sum = sum + matr[i, j];
+        }
+        Console.WriteLine($"Среднее арифметическое столбца {j} = {sum / matr.GetLength(0)}");
+    }
+}
+
+
+
+// Сортировка матрицы (строки по убыванию)
+
+int[,] SortMatrix(int[,] matr)
+{
+    for (int i = 0; i < matr.GetLength(0); i++)
+    {
+        for (int j = 0; j < matr.GetLength(1); j++)
+        {
+            for (int k = j + 1; k < matr.GetLength(1); k++)
+            {
+                if (matr[i, j] < matr[i, k])
+                {
+                    int temp = matr[i, j];
+                    matr[i, j] = matr[i, k];
+                    matr[i, k] = temp;
+                }
+            }
+
+        }
+    }
+    return matr;
+}
